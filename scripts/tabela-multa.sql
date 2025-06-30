@@ -30,3 +30,10 @@ update multa set evento = 1 where ID = 1;
 update multa set biblioteca = 1 where ID = 1;
 update multa set evento = 1 where ID = 1;
 /* join com evento, e usuário */
+
+select multa.ID, multa.data_criacao, 
+case when multa.status = 1 then 'Pendente' when multa.status = 0 then 'Paga' end as status, 
+usuario.nome as usuario, biblioteca.nome as biblioteca, evento.natureza_evento as evento, multa.valor from multa
+join usuario on usuario.ID = multa.usuario
+join biblioteca on biblioteca.ID = multa.biblioteca
+join evento on evento.ID = multa.evento;
